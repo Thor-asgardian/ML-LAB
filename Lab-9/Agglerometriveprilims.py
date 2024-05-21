@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
-from sklearn.cluster import AgglomerativeClustering
+from sklearn.cluster import AgglomerativeClustering, KMeans
 
-def kmeans(X, K, max_iters=100):
+def my_kmeans(X, K, max_iters=100):
     centroids = X[:K]
 
     for _ in range(max_iters):
@@ -26,7 +26,7 @@ def kmeans(X, K, max_iters=100):
 # Load the Iris dataset
 X = load_iris().data
 K = 3
-labels, centroids = kmeans(X, K)
+labels, centroids = my_kmeans(X, K)
 print("Labels without using sklearn(K-means):", labels)
 print("Centroids (K-means) without using sklearn:", centroids)
 
@@ -56,12 +56,10 @@ plt.tight_layout()
 plt.show()
 
 # K Means using SK Learn 
-from sklearn.cluster import KMeans
-
 K = 3
-kmeans = KMeans(n_clusters=K, random_state=0)
-labels_sklearn = kmeans.fit_predict(X)
-centroids_sklearn = kmeans.cluster_centers_
+kmeans_sklearn = KMeans(n_clusters=K, random_state=0)
+labels_sklearn = kmeans_sklearn.fit_predict(X)
+centroids_sklearn = kmeans_sklearn.cluster_centers_
 print("Scikit-learn K-means Labels:", labels_sklearn)
 print("Scikit-learn K-means Centroids:", centroids_sklearn)
 
@@ -73,31 +71,3 @@ plt.xlabel('Sepal Length')
 plt.ylabel('Sepal Width')
 plt.title('Scikit-learn K-means Clustering of Iris Dataset')
 plt.show()
-
-"""
-Labels without using sklearn(K-means): 
- [2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 1 0 0 0 0
- 0 0 1 1 0 0 0 0 1 0 1 0 1 0 0 1 1 0 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0
- 0 1]
-Centroids (K-means) without using sklearn: 
- [[6.85384615 3.07692308 5.71538462 2.05384615]
- [5.88360656 2.74098361 4.38852459 1.43442623]
- [5.006      3.428      1.462      0.246     ]]
-Labels (Agglomerative): 
- [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 2 2 2 0 2 2 2 2
- 2 2 0 0 2 2 2 2 0 2 0 2 0 2 2 0 0 2 2 2 2 2 0 0 2 2 2 0 2 2 2 0 2 2 2 0 2
- 2 0]
-Scikit-learn K-means Labels: 
- [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- 1 1 1 1 1 1 1 1 1 1 1 1 1 2 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 2 2 2 0 2 2 2 2
- 2 2 0 0 2 2 2 2 0 2 0 2 0 2 2 0 0 2 2 2 2 2 0 2 2 2 2 0 2 2 2 0 2 2 2 0 2
- 2 0]
-Scikit-learn K-means Centroids: [[5.88360656 2.74098361 4.38852459 1.43442623]
- [5.006      3.428      1.462      0.246     ]
- [6.85384615 3.07692308 5.71538462 2.05384615]]
-"""
