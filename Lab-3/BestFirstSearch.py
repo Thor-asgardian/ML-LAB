@@ -1,14 +1,13 @@
 import heapq
 
 def best_first_search(graph, start, goal, heuristic):
-    # Priority queue for exploring nodes based on heuristic
     priority_queue = []
     heapq.heappush(priority_queue, (heuristic[start], start))
     visited = set()
     parent = {start: None}
 
     while priority_queue:
-        current_heuristic, current_node = heapq.heappop(priority_queue)
+        _, current_node = heapq.heappop(priority_queue)
 
         if current_node in visited:
             continue
@@ -32,6 +31,7 @@ def best_first_search(graph, start, goal, heuristic):
 
     return path
 
+# Graph definition
 graph = {
     'A': ['B', 'C'],
     'B': ['D', 'E'],
@@ -42,6 +42,7 @@ graph = {
     'G': []
 }
 
+# Heuristic values
 heuristic = {
     'A': 6,
     'B': 4,
@@ -52,13 +53,10 @@ heuristic = {
     'G': 1
 }
 
+# Starting and goal nodes
 start = 'A'
 goal = 'D'
 
+# Perform the search and print the result
 path = best_first_search(graph, start, goal, heuristic)
 print("Best First Search Path:", path)
-
-"""
-Output:
-Best First Search Path: ['A', 'B', 'D']
-"""
