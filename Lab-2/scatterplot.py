@@ -1,5 +1,5 @@
-import matplotlib.pyplot as plt
-import numpy as np
+import matplotlib.pyplot as plt # It a collection of command style functions that make matplotlib work like MATLAB
+import numpy as np # It perform a wide variety of mathematical operations on arrays
 
 # Generate random data
 x = np.random.rand(100)
@@ -16,9 +16,9 @@ plt.show()
 '''Box Plot
 Box plots are useful for visualizing the distribution of data and identifying outliers.'''
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
+import matplotlib.pyplot as plt # It a collection of command style functions that make matplotlib work like MATLAB
+import seaborn as sns # It provides a high-level interface for drawing attractive and informative statistical graphics
+import numpy as np # It perform a wide variety of mathematical operations on arrays
 
 # Generate random data
 data = np.random.randn(100)
@@ -33,9 +33,9 @@ plt.show()
 '''Heat Map
 Heat maps are useful for visualizing data in matrix form.'''
 
-import seaborn as sns
-import matplotlib.pyplot as plt
-import numpy as np
+import seaborn as sns # It provides a high-level interface for drawing attractive and informative statistical graphics
+import matplotlib.pyplot as plt # It a collection of command style functions that make matplotlib work like MATLAB
+import numpy as np # It perform a wide variety of mathematical operations on arrays
 
 # Generate random data
 data = np.random.rand(10, 12)
@@ -50,8 +50,8 @@ plt.show()
 '''Contour Plot
 Contour plots are useful for visualizing 3D data in two dimensions.'''
 
-import matplotlib.pyplot as plt
-import numpy as np
+import matplotlib.pyplot as plt # It a collection of command style functions that make matplotlib work like MATLAB
+import numpy as np # It perform a wide variety of mathematical operations on arrays
 
 # Generate data
 x = np.linspace(-5, 5, 100)
@@ -69,9 +69,9 @@ plt.show()
 '''3D Surface Plot
 3D surface plots are useful for visualizing 3D data.'''
 
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import numpy as np
+import matplotlib.pyplot as plt # It a collection of command style functions that make matplotlib work like MATLAB
+from mpl_toolkits.mplot3d import Axes3D # It adds simple 3D plotting capabilities (scatter, surface, line, mesh, etc.) to Matplotlib by supplying an Axes object that can create a 2D projection of a 3D scene
+import numpy as np # It perform a wide variety of mathematical operations on arrays
 
 # Generate data
 x = np.linspace(-5, 5, 100)
