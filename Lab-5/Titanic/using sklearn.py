@@ -18,6 +18,7 @@ df['Embarked'] = LabelEncoder().fit_transform(df['Embarked'])
 
 X = df.drop('Survived', axis=1)
 y = df['Survived']
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 classifier = GaussianNB()
@@ -29,3 +30,11 @@ cm = confusion_matrix(y_test, y_pred)
 print("Confusion Matrix:\n", cm)
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
+
+"""
+Output:
+Confusion Matrix:
+ [[86 19]
+ [37 37]]
+Accuracy: 0.6871508379888268
+"""
