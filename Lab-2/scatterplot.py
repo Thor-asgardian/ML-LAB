@@ -32,7 +32,6 @@ plt.title('Box Plot')
 plt.show()
 
 
-
 """Heat Map
 Heat maps are useful for visualizing data in matrix form."""
 
@@ -49,7 +48,6 @@ plt.title('Heat Map')
 plt.show()
 
 
-
 """Contour Plot
 Contour plots are useful for visualizing 3D data in two dimensions."""
 
@@ -62,11 +60,11 @@ y = np.linspace(-5, 5, 100)
 X, Y = np.meshgrid(x, y)
 Z = np.sin(np.sqrt(X**2 + Y**2))
 
+
 # Create contour plot
 plt.contour(X, Y, Z, levels=20, cmap='RdGy')
 plt.title('Contour Plot')
 plt.show()
-
 
 
 """3D Surface Plot
