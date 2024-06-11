@@ -1,3 +1,6 @@
+"""Scatter plot
+It is a diagram where each value in the data set is represented by a dot.
+"""
 import matplotlib.pyplot as plt # It a collection of command style functions that make matplotlib work like MATLAB
 import numpy as np # It perform a wide variety of mathematical operations on arrays
 
@@ -13,8 +16,8 @@ plt.title('Scatter Plot')
 plt.show()
 
 
-'''Box Plot
-Box plots are useful for visualizing the distribution of data and identifying outliers.'''
+"""Box Plot
+Box plots are useful for visualizing the distribution of data and identifying outliers."""
 
 import matplotlib.pyplot as plt # It a collection of command style functions that make matplotlib work like MATLAB
 import seaborn as sns # It provides a high-level interface for drawing attractive and informative statistical graphics
@@ -30,8 +33,8 @@ plt.show()
 
 
 
-'''Heat Map
-Heat maps are useful for visualizing data in matrix form.'''
+"""Heat Map
+Heat maps are useful for visualizing data in matrix form."""
 
 import seaborn as sns # It provides a high-level interface for drawing attractive and informative statistical graphics
 import matplotlib.pyplot as plt # It a collection of command style functions that make matplotlib work like MATLAB
@@ -47,8 +50,8 @@ plt.show()
 
 
 
-'''Contour Plot
-Contour plots are useful for visualizing 3D data in two dimensions.'''
+"""Contour Plot
+Contour plots are useful for visualizing 3D data in two dimensions."""
 
 import matplotlib.pyplot as plt # It a collection of command style functions that make matplotlib work like MATLAB
 import numpy as np # It perform a wide variety of mathematical operations on arrays
@@ -66,8 +69,8 @@ plt.show()
 
 
 
-'''3D Surface Plot
-3D surface plots are useful for visualizing 3D data.'''
+"""3D Surface Plot
+3D surface plots are useful for visualizing 3D data."""
 
 import matplotlib.pyplot as plt # It a collection of command style functions that make matplotlib work like MATLAB
 from mpl_toolkits.mplot3d import Axes3D # It adds simple 3D plotting capabilities (scatter, surface, line, mesh, etc.) to Matplotlib by supplying an Axes object that can create a 2D projection of a 3D scene
