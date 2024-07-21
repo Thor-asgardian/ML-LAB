@@ -6,56 +6,56 @@ def sigmoid(x):
 def sigmoid_derivative(x):
     return x * (1 - x)
 
-def create_andnot_model():
-    model = {'weights': [np.random.rand(2, 1)], 'biases': [np.random.rand(1)]}
-    return model
-
-def create_xor_model():
-    model = {'weights': [np.random.rand(2, 2), np.random.rand(2, 1)], 'biases': [np.random.rand(2), np.random.rand(1)]}
+def create_model(layers):
+    model = {'weights': [], 'biases': []}
+    for i in range(len(layers) - 1):
+        model['weights'].append(np.random.rand(layers[i], layers[i + 1]))
+        model['biases'].append(np.random.rand(1, layers[i + 1]))
     return model
 
 def forward_propagation(model, X):
-    layer_input = X
+    activations = [X]
     for i in range(len(model['weights'])):
-        layer_output = sigmoid(np.dot(layer_input, model['weights'][i]) + model['biases'][i])
-        layer_input = layer_output
-    return layer_output
+        net_input = np.dot(activations[-1], model['weights'][i]) + model['biases'][i]
+        activations.append(sigmoid(net_input))
+    return activations
 
 def train_model(model, X, y, epochs=2000, learning_rate=0.1):
-    for epoch in range(epochs):
-        output = forward_propagation(model, X)
+    for _ in range(epochs):
+        activations = forward_propagation(model, X)
+        error = y - activations[-1]
+        deltas = [error * sigmoid_derivative(activations[-1])]
+        
+        for i in range(len(model['weights']) - 2, -1, -1):
+            deltas.append(deltas[-1].dot(model['weights'][i + 1].T) * sigmoid_derivative(activations[i + 1]))
+        deltas.reverse()
 
-        error = y - output
-        d_output = error * sigmoid_derivative(output)
+        for i in range(len(model['weights'])):
+            model['weights'][i] += learning_rate * activations[i].T.dot(deltas[i])
+            model['biases'][i] += learning_rate * np.sum(deltas[i], axis=0, keepdims=True)
 
-        for i in range(len(model['weights']) - 1, -1, -1):
-            model['weights'][i] += learning_rate * np.dot(X if i == 0 else forward_output[i-1].T, d_output)
-            model['biases'][i] += learning_rate * np.sum(d_output, axis=0)
-            d_output = np.dot(d_output, model['weights'][i].T) * sigmoid_derivative(forward_output[i - 1])
+def evaluate_model(model, X, y):
+    predictions = np.round(forward_propagation(model, X)[-1])
+    accuracy = np.mean(predictions == y) * 100
+    return accuracy, predictions
 
-X_andnot = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 y_andnot = np.array([[0], [0], [1], [0]])
-
-X_xor = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 y_xor = np.array([[0], [1], [1], [0]])
 
-andnot_model = create_andnot_model()
-train_model(andnot_model, X_andnot, y_andnot)
+andnot_model = create_model([2, 1])
+xor_model = create_model([2, 2, 1])
 
-xor_model = create_xor_model()
-train_model(xor_model, X_xor, y_xor)
+train_model(andnot_model, X, y_andnot)
+train_model(xor_model, X, y_xor)
 
-andnot_predictions = np.round(forward_propagation(andnot_model, X_andnot))
-xor_predictions = np.round(forward_propagation(xor_model, X_xor))
-
-andnot_acc = np.mean(andnot_predictions == y_andnot) * 100
-xor_acc = np.mean(xor_predictions == y_xor) * 100
+andnot_acc, andnot_predictions = evaluate_model(andnot_model, X, y_andnot)
+xor_acc, xor_predictions = evaluate_model(xor_model, X, y_xor)
 
 print(f"AND-NOT Model Accuracy: {andnot_acc:.2f}%")
-print(f"XOR Model Accuracy: {xor_acc:.2f}%")
-
 print("AND-NOT Predictions:")
 print(andnot_predictions)
 
+print(f"XOR Model Accuracy: {xor_acc:.2f}%")
 print("XOR Predictions:")
 print(xor_predictions)
