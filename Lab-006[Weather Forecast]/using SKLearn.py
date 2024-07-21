@@ -32,4 +32,5 @@ def train_and_evaluate(X_train, X_test, y_train, y_test, criterion, algo_name):
     print(f"Classification Report:\n{report}")
 
 train_and_evaluate(X_train, X_test, y_train, y_test, criterion='entropy', algo_name='ID3')
+
 train_and_evaluate(X_train, X_test, y_train, y_test, criterion='gini', algo_name='CART')
