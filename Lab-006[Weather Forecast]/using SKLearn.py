@@ -15,6 +15,7 @@ y = df['Play_Yes']  # Modify the column name here if needed
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 def train_and_evaluate(X_train, X_test, y_train, y_test, criterion, algo_name):
+    # Initialize the Decision Tree classifier
     clf = DecisionTreeClassifier(criterion=criterion, random_state=42)
     clf.fit(X_train, y_train)
     
@@ -28,9 +29,8 @@ def train_and_evaluate(X_train, X_test, y_train, y_test, criterion, algo_name):
     report = classification_report(y_test, y_pred)
 
     print(f"{algo_name} Algorithm Results:")
-    print(f"Accuracy: {accuracy}")
+    print(f"Accuracy: {accuracy:.2f}")
     print(f"Classification Report:\n{report}")
 
 train_and_evaluate(X_train, X_test, y_train, y_test, criterion='entropy', algo_name='ID3')
-
 train_and_evaluate(X_train, X_test, y_train, y_test, criterion='gini', algo_name='CART')
